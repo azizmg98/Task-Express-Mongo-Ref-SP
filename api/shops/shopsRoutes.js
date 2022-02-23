@@ -14,4 +14,4 @@ router.post("/");
 router.delete("/:productId", productDelete);
 router.put("/:productId", upload.single("image"), productUpdate);
 
-module.exports = router;
+module.exports = Shopsrouter;

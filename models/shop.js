@@ -3,8 +3,8 @@ const mongooseSlugPlugin = require("mongoose-slug-plugin");
 
 const ShopSchema = new mongoose.Schema(
   {
-    name: String,
-    image: String,
+    name: { type: String, required:true },
+    image: { type: String, required:true },
   },
   { timestamps: true }
 );
