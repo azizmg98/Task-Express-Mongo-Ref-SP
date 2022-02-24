@@ -1,4 +1,5 @@
 const express = require("express");
+const upload = require('../../middleware/multer')
 
 const {
   getShop,
@@ -10,4 +11,4 @@ const router = express.Router();
 router.get("/",  getShop);
 router.post("/", upload.single('image'), createShop);
 
-module.exports = Shopsrouter;
+module.exports = router;

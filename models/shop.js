@@ -5,9 +5,10 @@ const ShopSchema = new mongoose.Schema(
   {
     name: { type: String, required:true },
     image: { type: String, required:true },
+    product: { type: mongoose.Schema.Types.ObjectId, ref:'Product' }
   },
   { timestamps: true }
 );
 
-ProductSchema.plugin(mongooseSlugPlugin, { tmpl: "<%=name%>" });
+ShopSchema.plugin(mongooseSlugPlugin, { tmpl: "<%=name%>" });
 module.exports = mongoose.model("Shop", ShopSchema);
