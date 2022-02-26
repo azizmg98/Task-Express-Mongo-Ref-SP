@@ -22,7 +22,24 @@ exports.createShop = async (req, res, next) => {
     } catch (error) {
          next(error)
     }
-}
+};
+
+exports.updateShop = async (req, res, next) => {
+  try {
+    if (req.file) {
+      req.body.image = `/${req.file.path}`;
+      req.body.image = req.body.image.replace('\\', '/');
+    }
+    const shop = await Shop.findByIdAndUpdate(
+      { _id: req.shop.id },
+      req.body,
+      { new: true, runValidators: true } // returns the updated product
+    );
+    res.status(204).end();
+  } catch (err) {
+    next(error);
+  }
+};
 
 // what if i wanted to create a product without adding it to a shop
 exports.createProduct = async (req, res, next ) => {
@@ -32,6 +49,7 @@ exports.createProduct = async (req, res, next ) => {
             req.body.image = req.body.image.replace('\\', '/');
           }
           // take shopId from url params. can be called -> const shopId = req.params.shopId
+          // try deleting this line after adding router.param
           const { shopId } = req.params 
           // adding id from params to product body
           req.body.shop = shopId 

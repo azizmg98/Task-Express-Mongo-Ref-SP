@@ -22,11 +22,11 @@ const UserSchema = new mongoose.Schema(
                 "Please fill a valid email address",
             ],
         },
-        firstName: {
+        firstname: {
             type: String,
             // https://stackoverflow.com/questions/28116533/how-can-i-capitalize-strings-in-mongoose
         },
-        lastName: {
+        lastname: {
             type: String,
         },
     },
