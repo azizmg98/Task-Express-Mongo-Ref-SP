@@ -1,7 +1,7 @@
 const express = require('express');
 // add profile picture
 const upload = require('../../middleware/multer');
-const { signup } = require('./userControllers')
+const { signup, signin } = require('./userControllers')
 
 const router = express.Router();
 
@@ -18,5 +18,6 @@ router.param('userId', async (req, res, next, userId) => {
   });
 
 router.post('', signup);
+router.put('', signin)
 
 module.exports = router;

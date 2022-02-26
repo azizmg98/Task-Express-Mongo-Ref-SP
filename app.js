@@ -5,6 +5,8 @@ const productRoutes = require("./api/products/productRoutes");
 const shopRoutes = require('./api/shops/shopRoutes')
 const userRoutes = require('./api/users/userRoutes')
 require('dotenv').config
+const passport = require('passport')
+const { localStrategy } = require('./middleware/passport')
 
 const app = express();
 connectDb();
@@ -12,9 +14,13 @@ connectDb();
 // .config can be called in import -> require('dotenv').config
 const PORT = process.env.PORT || 5000;
 
+// middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize())
+
+passport.use(localStrategy)
 
 // log url requests
 app.use((req, res, next) => {

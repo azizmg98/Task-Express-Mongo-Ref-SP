@@ -26,6 +26,14 @@ exports.signup = async (req, res, next) => {
     }
 };
 
+exports.signin = async (req, res, next) => {
+    try {
+        console.log(req)
+    } catch (error) {
+        next(error)
+    }
+};
+
 exports.deleteProduct = async (req, res, next) => {
     try {
       await req.user.remove();
