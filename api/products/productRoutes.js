@@ -2,7 +2,6 @@ const express = require('express');
 
 const {
   getProducts,
-  createProduct,
   deleteProduct,
   fetchProduct,
   updateProduct,
@@ -24,7 +23,7 @@ router.param('productId', async (req, res, next, productId) => {
 });
 
 router.get('/', getProducts);
-router.post('/', upload.single('image'), createProduct);
+// router.post('/', upload.single('image'), createProduct);
 router.delete('/:productId', deleteProduct);
 router.put('/:productId', upload.single('image'), updateProduct);
 

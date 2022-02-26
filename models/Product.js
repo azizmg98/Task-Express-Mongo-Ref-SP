@@ -12,7 +12,8 @@ const ProductSchema = new mongoose.Schema(
       min: 1,
     },
     image: { type: String },
-    quantity: { type: Number },
+    quantity: { type: Number, min:0 },
+    shop: { type: mongoose.Schema.Types.ObjectId, ref:'Shop' },
   },
 
   { timestamps: true }
