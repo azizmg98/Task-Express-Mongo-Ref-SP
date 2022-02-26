@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const connectDb = require("./database");
-const productsRoutes = require("./api/products/productRoutes");
-const shopsRoutes = require('./api/shops/shopRoutes')
+const productRoutes = require("./api/products/productRoutes");
+const shopRoutes = require('./api/shops/shopRoutes')
+const userRoutes = require('./api/users/userRoutes')
 require('dotenv').config
 
 const app = express();
@@ -24,8 +25,9 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/api/products", productsRoutes);
-app.use("/api/shops", shopsRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/shops", shopRoutes);
+app.use("/api/users", userRoutes);
 
 // error handling 
 // how does the error handling work exactly
