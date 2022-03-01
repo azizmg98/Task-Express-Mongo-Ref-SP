@@ -26,20 +26,15 @@ exports.signup = async (req, res, next) => {
     }
 };
 
-exports.signin = async (req, res, next) => {
-    try {
-        console.log(req)
-    } catch (error) {
-        next(error)
-    }
-};
+exports.signin = (req, res, next) => {
+    const user = req.user
+    const payload = {
+        _id : user._id,
+        username: user.username,
+        exp: Date.now() + exp,
+    };
+    const token = jwt.sign(JSON.stringify(payload), secret)
+    return res.status(201).json({ token })
+}
 
-exports.deleteProduct = async (req, res, next) => {
-    try {
-      await req.user.remove();
-      res.status(204).end();
-    } catch (err) {
-      next(error);
-   }
-};
   

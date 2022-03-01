@@ -2,6 +2,7 @@ const express = require('express');
 // add profile picture
 const upload = require('../../middleware/multer');
 const { signup, signin } = require('./userControllers')
+const passport = require('passport')
 
 const router = express.Router();
 
@@ -17,7 +18,11 @@ router.param('userId', async (req, res, next, userId) => {
     }
   });
 
-router.post('', signup);
-router.put('', signin)
+router.post('/signup', signup);
+router.post(
+  '/signin',
+  passport.authenticate("local", { session: false }),
+  signin
+)
 
 module.exports = router;
