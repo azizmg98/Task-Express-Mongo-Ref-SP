@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config
 
-const exp = process.env.JWT_EXPIRATION_MS
+const exp = +process.env.JWT_EXPIRATION_MS
 const secret = process.env.JWT_SECRET
 
 exports.signup = async (req, res, next) => {
@@ -37,4 +37,3 @@ exports.signin = (req, res, next) => {
     return res.status(201).json({ token })
 }
 
-  

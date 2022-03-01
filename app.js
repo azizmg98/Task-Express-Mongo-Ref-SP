@@ -6,7 +6,7 @@ const shopRoutes = require('./api/shops/shopRoutes')
 const userRoutes = require('./api/users/userRoutes')
 require('dotenv').config
 const passport = require('passport')
-const { localStrategy } = require('./middleware/passport')
+const { localStrategy, jwtStrategy } = require('./middleware/passport')
 
 const app = express();
 connectDb();
@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize())
 passport.use(localStrategy)
+passport.use(jwtStrategy)
 
 // log url requests
 app.use((req, res, next) => {

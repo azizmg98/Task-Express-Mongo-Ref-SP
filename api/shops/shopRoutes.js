@@ -6,6 +6,7 @@ const {
   createProduct,
   updateShop,
 } = require("./shopControllers");
+const passport = require('passport')
 
 const router = express.Router();
 
@@ -22,7 +23,7 @@ router.param('shopId', async (req, res, next, shopId) => {
 });
 
 router.get("/",  getShops);
-router.post("/", upload.single('image'), createShop);
+router.post("/", passport.authenticate("jwt", { session: false }), upload.single('image'), createShop);
 router.put("/", upload.single('image'), updateShop)
 router.post("/:shopId/products", upload.single('image'), createProduct)
 

@@ -17,6 +17,7 @@ exports.createShop = async (req, res, next) => {
           req.body.image = `/${req.file.path}`
           req.body.image = req.body.image.replace('\\', '/');
         }
+        req.body.owner = req.user._id
         const newShop = await Shop.create(req.body)
         return res.status(201).json(newShop)
     } catch (error) {
